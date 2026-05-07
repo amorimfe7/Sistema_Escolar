@@ -1,33 +1,33 @@
 package model;
 
-import sun.util.resources.LocaleData;
+import java.time.LocalDate;
 
 public class Aluno {
     private String nome;
     private String cpf;
     private String email;
-    private LocaleData data_nascimento;
+    private LocalDate data_nascimento;
     private String telefone;
 
     int id;
 
     //construtor p/ CRIAR um novo Aluno
-    public Aluno(String cpf, String nome, String telefone, LocaleData data_nascimento, String email) {
-        this.cpf = cpf;
+    public Aluno(String nome, String cpf,String email, LocalDate data_nascimento,String telefone) {
         this.nome = nome;
-        this.telefone = telefone;
-        this.data_nascimento = data_nascimento;
+        this.cpf = cpf;
         this.email = email;
+        this.data_nascimento = data_nascimento;
+        this.telefone = telefone;
     }
 
     //construtor p/ LEITURA dos dados de Aluno
-    public Aluno(int id, String telefone, LocaleData data_nascimento, String email, String cpf, String nome) {
+    public Aluno(int id, String nome, String cpf, String email, LocalDate data_nascimento, String telefone) {
         this.id = id;
-        this.telefone = telefone;
-        this.data_nascimento = data_nascimento;
-        this.email = email;
-        this.cpf = cpf;
         this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.data_nascimento = data_nascimento;
+        this.telefone = telefone;
     }
 
     public int getId() {
@@ -50,11 +50,11 @@ public class Aluno {
         this.cpf = cpf;
     }
 
-    public LocaleData getData_nascimento() {
+    public LocalDate getData_nascimento() {
         return data_nascimento;
     }
 
-    public void setData_nascimento(LocaleData data_nascimento) {
+    public void setData_nascimento(LocalDate data_nascimento) {
         this.data_nascimento = data_nascimento;
     }
 
