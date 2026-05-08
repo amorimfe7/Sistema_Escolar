@@ -19,4 +19,6 @@ public interface IAlunoDAO {
     void deletarAluno(int id);
 
     void salvarAluno(Aluno aluno);
+
+    Aluno listarAlunoId(int id);
 }

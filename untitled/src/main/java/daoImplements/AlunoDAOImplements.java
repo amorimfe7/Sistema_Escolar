@@ -54,4 +54,35 @@ public class AlunoDAOImplements implements IAlunoDAO {
     public void deletarAluno(int id) {
 
     }
+
+    @Override
+    public Aluno listarAlunoId(int id) {
+        String sql = ("SELECT * FROM aluno WHERE id = ?");
+        Aluno alunoId = null;
+        try (Connection conn = sqlConn.getConnection()) {
+            //Statement = prepara a consulta no SQL para ser executada
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            //`execute.Query()` executa o SELECT | rs = guarda o resultado/retorno da consulta
+            ResultSet rs = stmt.executeQuery();
+
+            //enquanto existir linhas no resultado, continue lendo
+            if (rs.next()) {
+                alunoId = new Aluno(
+                        rs.getInt("id"),
+                        rs.getString("nome"),
+                        rs.getString("cpf"),
+                        rs.getString("email"),
+                        rs.getDate("data_nascimento").toLocalDate(),
+                        rs.getString("telefone")
+                );
+            };
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return alunoId;
+    }
+
 }
