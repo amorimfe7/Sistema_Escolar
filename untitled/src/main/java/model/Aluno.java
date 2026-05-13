@@ -12,13 +12,6 @@ public class Aluno {
     int id;
 
     //construtor p/ CRIAR um novo Aluno
-    public Aluno(String nome, String cpf,String email, LocalDate data_nascimento,String telefone) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
-        this.data_nascimento = data_nascimento;
-        this.telefone = telefone;
-    }
 
     //construtor p/ LEITURA dos dados de Aluno
     public Aluno(int id, String nome, String cpf, String email, LocalDate data_nascimento, String telefone) {
@@ -28,6 +21,17 @@ public class Aluno {
         this.email = email;
         this.data_nascimento = data_nascimento;
         this.telefone = telefone;
+    }
+    public Aluno(String nome, String cpf, String email, LocalDate data_Nascimento, String telefone) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.data_nascimento = data_Nascimento;
+        this.telefone = telefone;
+    }
+
+    public Aluno(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -77,5 +81,9 @@ public class Aluno {
     @Override
     public String toString(){
         return String.format("Aluno: id=%d | Nome = %s | CPF = %s | Email = %s | DataNascimento = %s | Telefone = %s", id, nome, cpf, email, data_nascimento,telefone);
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

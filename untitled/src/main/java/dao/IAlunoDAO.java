@@ -3,14 +3,16 @@ package dao;
 import model.Aluno;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IAlunoDAO {
 
     //C
-    void criar(Aluno aluno);
+    void salvarAluno(Aluno aluno);
 
     //R
     List<Aluno> listarTodosAlunos();
+    Optional<Aluno> buscarPorId(int id);
 
     //U
     void atualizarAluno(Aluno aluno);
@@ -18,7 +20,4 @@ public interface IAlunoDAO {
     //D
     void deletarAluno(int id);
 
-    void salvarAluno(Aluno aluno);
-
-    Aluno listarAlunoId(int id);
 }

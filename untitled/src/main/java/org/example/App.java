@@ -4,6 +4,8 @@ import daoImplements.AlunoDAOImplements;
 import database.sqlConn;
 import model.Aluno;
 
+import java.sql.SQLOutput;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,9 +36,26 @@ public class App
 
             switch (opção){
                 case 1:
-                    //alunoDaoMetodos.salvarAluno();
                     System.out.println("--- Cadastrar Alunos ---");
 
+                    System.out.println("Nome: ");
+                    String nome = sc.next();
+                    System.out.println("CPF");
+                    String cpf = sc.next();
+                    System.out.println("Email:");
+                    String email = sc.next();
+                    System.out.println("Data de Nascimento");
+                    LocalDate dataNascimento;
+                    try{
+                        dataNascimento = LocalDate.parse(sc.next());
+                    } catch (Exception e ){
+                        throw new RuntimeException("Erro de data. Tente: aaaa-mm-dd");
+                    }
+                    System.out.println("Telefone: ");
+                    String telefone= sc.next();
+
+                    Aluno alunoNovo = new Aluno(nome, cpf, email, dataNascimento, telefone);
+                    alunoDaoMetodos.salvarAluno(alunoNovo);
                     break;
 
                 case 2:
@@ -53,22 +72,51 @@ public class App
                     break;
 
                 case 3:
+
                     System.out.println("--- Atualizar Alunos ---");
+
+                    for(Aluno aluno : alunoDaoMetodos.listarTodosAlunos()){
+                        System.out.println(alunoDaoMetodos.listarTodosAlunos());
+                    }
+
+                    System.out.println("Insira o ID do aluno a ser atualizado: ");
+                    int idAtualizar = sc.nextInt();
+
+                    if(alunoDaoMetodos.buscarPorId(idAtualizar).isPresent()){
+                        System.out.println("Novo nome: ");
+                        String nomeNovo = sc.nextLine();
+                        System.out.println("Novo email:");
+                        String emailNovo = sc.nextLine();
+
+                    }
+                    ;
+
                     break;
 
                 case 4:
-                    System.out.println("--- Deletar Alunos ---");
+                    System.out.println("--- Deletar Alunos ---\n");
+
+                    for(Aluno aluno : alunoDaoMetodos.listarTodosAlunos()){
+                        alunoDaoMetodos.listarTodosAlunos();
+                    };
+
+                    System.out.println("Digite o ID do aluno a ser excluído: ");
+                    int idExcluir = sc.nextInt();
+
+                    alunoDaoMetodos.deletarAluno(idExcluir);
                     break;
+
                 case 5:
                     System.out.println("--- Pesquisar Aluno por ID ---\n");
                     System.out.println("Insira o ID do Aluno a ser localizado: ");
                     int idSelecionado = sc.nextInt();
 
-                    alunoDaoMetodos.listarAlunoId(idSelecionado);
+                    alunoDaoMetodos.buscarPorId(idSelecionado);
                     break;
+
                 case 0:
                     System.out.println("--- Fechando o programa.. ---");
-                    opção = 1;
+                    opção = 0;
                     break;
             }
 
