@@ -76,6 +76,8 @@ public class AlunoDAOImplements implements IAlunoDAO {
             stmt.setString(3, aluno.getTelefone());
             stmt.setInt(4, aluno.getId());
 
+            stmt.executeUpdate();
+
         } catch (SQLException e){
             throw new RuntimeException(e.getMessage());
         }
